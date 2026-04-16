@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ 
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath></BaseOutputPath>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\OpenUtau.Core\OpenUtau.Core.csproj" />
+    <ProjectReference Include="..\OpenUtau.Test\OpenUtau.Test.csproj" />
+  </ItemGroup>
+ 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(SolutionDir)OpenUtau\bin\Debug\net8.0-windows\Plugins\$(TargetName).dll&quot;" Condition="'$(SolutionDir)' != '*Undefined*'" />
+  </Target>
+ 
+</Project>
